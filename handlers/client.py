@@ -3,7 +3,7 @@ from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher import FSMContext
 from aiogram import types
 from botConfiguration import dp, bot 
-from handlers.keyboards.clientKB import main_keyboard, movie_kb
+from handlers.keyboards.clientKB import main_keyboard, movie_kb, afilmKb
 
 # not working
 async def cancel_work(message: types.Message, state: FSMContext):
@@ -18,6 +18,10 @@ async def starter(message : types.Message):
 
 async def watching_films(message : types.Message):
     await bot.send_message(message.from_user.id, 'Подивитися фільми', reply_markup=movie_kb)
+
+async def announced_films(message: types.Message):
+    photo_url = 'https://vrgsoft.net/wp-content/uploads/2020/08/logo_shadow.jpg'
+    await bot.send_photo(message.from_user.id, photo=photo_url, reply_markup=afilmKb)
 
 async def team_join(message: types.Message):
     await work_offer(message)
@@ -36,6 +40,7 @@ def register_handlers_client(dp : Dispatcher):
     
     dp.register_message_handler(starter, commands=['start'])
     dp.register_message_handler(watching_films, Text(ignore_case=True, equals='Подивитися фільми'))
+    dp.register_message_handler(announced_films, Text(ignore_case=True, equals='Анонси фільмів'))
     dp.register_message_handler(team_join, Text(ignore_case=True, equals='Приєднатися до команди'))
     dp.register_message_handler(go_to_mainMenu, Text(ignore_case=True, equals='В головне меню'))
     
