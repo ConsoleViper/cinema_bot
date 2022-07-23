@@ -5,6 +5,5 @@ TOKEN =  '5391145092:AAFPd2wA9Dvza-DAXfd15COon8Atowfxk80'
 
 bot = Bot(TOKEN)
 
-storage = MemoryStorage()
 
-dp = Dispatcher(bot, storage)
+dp = Dispatcher(bot, storage = MemoryStorage())

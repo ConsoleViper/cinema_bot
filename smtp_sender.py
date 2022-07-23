@@ -1,4 +1,4 @@
-# not work
+# not working because google closed accessing with email and pass
 import smtplib
 from email.mime.text import MIMEText
 
